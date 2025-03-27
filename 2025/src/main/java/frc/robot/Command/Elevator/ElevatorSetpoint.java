@@ -1,17 +1,15 @@
-package frc.robot.Command;
+package frc.robot.Command.Elevator;
 
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants.ScoreAngle.ScoringPose;
-import frc.robot.Subsystems.ElevatorSubsystem;
-import frc.robot.Subsystems.WristSubsystem;
+import frc.robot.subsystems.Elevator.ElevatorSubSystem;
 
-public class EWsetpoint extends SequentialCommandGroup {
-    public EWsetpoint (ElevatorSubsystem elevator, WristSubsystem wrist, ScoringPose pose){
+
+public class ElevatorSetpoint extends SequentialCommandGroup {
+    public ElevatorSetpoint (ElevatorSubSystem elevator, double setpoint){
         addCommands(
-            new ParallelCommandGroup(elevator.setSetpointCommand(pose.elevatorheight()),wrist.setSetpointCommand(pose.wristangle())),
-            Commands.waitUntil(() -> wrist.isAtSetPoint() && elevator.isAtSetPoint())
+           elevator.setSetpointCommand(setpoint),
+            Commands.waitUntil(() -> elevator.isAtSetPoint())
             );
     }
     

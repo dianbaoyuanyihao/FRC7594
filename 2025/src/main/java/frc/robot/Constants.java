@@ -5,6 +5,9 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.pathplanner.lib.path.PathConstraints;
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
+
 public class Constants {
 
     public static final class AlgaeIntakeSuckerConstants {
@@ -29,6 +32,16 @@ public class Constants {
         public static final double ElevatorLUpSpeed = 0;
         public static final double ElevatorLDownSpeed = 0;
         public static final double ElevatorLHoldSpeed = 0;
+        public static final double maxVelocity = 0.5;
+        public static final double maxAcceleration = 1;
+        public static final double closeEnough = 0.01;
+        public static final TrapezoidProfile.Constraints CONSTRAINTS = new Constraints(maxVelocity, maxAcceleration);
+
+        public static final double gearRatio = 12; //to get
+        public static final double pitchDiameter = 0.0447; //to get
+        public static final double circumference = pitchDiameter * Math.PI; 
+        public static final double positionConversionFactor = circumference/gearRatio;
+        public static final double velocityConversionFactor = circumference/gearRatio/60;
         
     }
 
@@ -40,5 +53,16 @@ public class Constants {
         public static final double ClimberLInactiveSpeed = 0;      
 
     }
+
+    public final class ScoreAngle{
+        //to test and change
+        public static final Double L1 = 0.2;
+        public static final Double L2 = .59;
+        public static final Double L3 = .87;
+        public static final Double L4=  .9;
+        public static final Double DEFAULT = 0.0;
+      
+      }
+      
 
 }
